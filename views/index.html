@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  
+  <div class="page-header">
+    <h1>Welcome to Twitter.js!</h1>
+  </div>
+  <div class="row">
+    
+    <div class="col-md-3">
+      <img src="https://instagram.faep8-1.fna.fbcdn.net/v/t51.2885-19/s150x150/139333883_231677958575122_3552279447886077189_n.jpg?tp=1&_nc_ht=instagram.faep8-1.fna.fbcdn.net&_nc_ohc=HgtUK4q6yyEAX_E2u-4&edm=ABfd0MgBAAAA&ccb=7-4&oh=eb865d96152dc3eaa913e6a12ab19881&oe=60C2C265&_nc_sid=7bff83"><br>
+      <b>Rodri</b><br>
+      100 followers
+    </div>
+
+    <div class="col-md-9" id="tweets">
+      <!-- display tweets here -->
+      {% for tweet in tweets %}
+        <h4><a href="/users/{{tweet.name}}">{{tweet.name}}</a></h4>
+        <p><a href="/tweets/{{tweet.id}}">{{tweet.content}}</a></p>
+      {% endfor %}
+    </div>
+    
+  </div>
+    
+
+  {% if showForm %}
+  <div class="row">
+      <div class="col-md-12">
+        <form action="/tweets" method="POST">
+          <label for="name_field">Name:</label>
+          <input name="name" type="text" id="name_field" value="{{twitero}}"/>
+          <label for="text_field">Text:</label>
+          <input name="text" type="text" id="text_field" style="width: 350px;" placeholder="Ingrese su tweet"/>
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+  </div>
+  {% endif %}
+
+
+
+{% endblock %}
